@@ -19,3 +19,6 @@ var yearOptions = [
 ];
 
 var yearSelectedForFilter = "2022";
+
+var minYearStarting = 1;
+var maxYearStopping= 17;
