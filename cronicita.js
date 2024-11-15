@@ -1,5 +1,8 @@
 var yearOptions = [
-  { val: "2019", checked: true },
+  { val: "2022", checked: true },
+  { val: "2021", checked: false },
+  { val: "2020", checked: false },
+  { val: "2019", checked: false },
   { val: "2018", checked: false },
   { val: "2017", checked: false },
   { val: "2016", checked: false },
@@ -14,3 +17,5 @@ var yearOptions = [
   { val: "2007", checked: false },
   { val: "2006", checked: false },
 ];
+
+var yearSelectedForFilter = "2022";
