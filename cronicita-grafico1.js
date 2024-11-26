@@ -425,7 +425,215 @@ var sexOptions = [{
     },
 ];
 
-var $mainContainer = $("<div />").addClass("main-container").css({
-    display: "flex",
-    justifyContent: "space-between",
-});
+function createFilter(options, labelText, container, includeSelectButtons, singleSelection, filterName = "") {
+    var $dropdown = $("<div />").addClass("dropdown");
+    var $button = $("<button />").text(labelText);
+    var $dropdownMenu = $("<ul />").addClass("dropdown-menu");
+
+    $.each(options, function (index, option) {
+        var $input;
+        if (singleSelection) {
+            $input = $("<input />").attr({
+                type: "radio",
+                name: labelText.replace(/\s+/g, "_"),
+                value: option.val,
+                checked: option.checked,
+            });
+        } else {
+            $input = $("<input />").attr({
+                type: "checkbox",
+                value: option.val,
+                checked: option.checked,
+            });
+        }
+
+        var $label = $("<label />").append($input, $("<span />").text(option.val));
+
+        var $menuItem = $("<li />").append($label);
+        $dropdownMenu.append($menuItem);
+
+        $input.on("change", function () {
+            if (singleSelection) {
+                $dropdownMenu
+                    .find("input[type='radio']")
+                    .not(this)
+                    .prop("checked", false);
+            }
+            updateButtonText();
+        });
+    });
+
+    function updateButtonText() {
+        var selectedOptions = $dropdownMenu.find("input:checked");
+        var numSelected = selectedOptions.length;
+        if (numSelected > 0 && numSelected <= 3) {
+            var buttonText = "";
+            selectedOptions.each(function () {
+                buttonText += $(this).val() + ", ";
+            });
+            buttonText = buttonText.slice(0, -2);
+            $button.text(buttonText);
+        } else if (numSelected > 3) {
+            $button.text(numSelected + " opzioni selezionate");
+        } else {
+            $button.text(labelText);
+        }
+    }
+
+    $dropdownMenu.css({
+        display: "none",
+        position: "absolute",
+        backgroundColor: "#fff",
+        border: "1px solid #ccc",
+        borderRadius: "4px",
+        padding: "5px",
+        listStyle: "none",
+        margin: "0",
+        width: "auto",
+        maxWidth: "200px",
+        maxHeight: "200px",
+        overflowX: "hidden",
+        overflowY: "auto",
+    });
+
+    $dropdownMenu.find("li").css({
+        padding: "5px",
+    });
+
+    $dropdownMenu.find("label").css({
+        display: "flex",
+        alignItems: "center",
+    });
+
+    $dropdownMenu.find("input[type='checkbox']").css({
+        marginRight: "5px",
+    });
+
+    $dropdownMenu.find("label span").css({
+        marginLeft: "5px",
+    });
+
+    $button.css({
+        padding: "4px 8px",
+        marginRight: "4px",
+        border: "1px solid #ccc",
+        borderRadius: "6px",
+        backgroundColor: "#f9f9f9",
+        cursor: "pointer",
+    });
+
+    $button.hover(
+        function () {
+            $(this).css("backgroundColor", "#f0f0f0");
+        },
+        function () {
+            $(this).css("backgroundColor", "#f9f9f9");
+        }
+    );
+
+    $button.on("click", function () {
+        $(".dropdown-menu").not($dropdownMenu).hide();
+        $dropdownMenu.toggle();
+    });
+
+    $dropdown.append($button, $dropdownMenu);
+
+    if (includeSelectButtons) {
+        var $searchBox = $("<input />")
+            .css({
+                width: "100%",
+                border: "0px",
+                marginBottom: "6px",
+            })
+            .attr({
+                type: "text",
+                placeholder: "Cerca...",
+            })
+            .on("input", function () {
+                var searchValue = $(this).val().toLowerCase();
+                $dropdownMenu.find("label").each(function () {
+                    var text = $(this).text().toLowerCase();
+                    $(this).parent().toggle(text.includes(searchValue));
+                });
+            });
+
+        var $searchItem = $("<li />").append($searchBox);
+        $dropdownMenu.append($searchItem);
+
+        var $selectAllButton = $("<button />")
+            .text("Seleziona Tutto")
+            .css({
+                width: "100%",
+                border: "1px solid",
+                borderRadius: "4px",
+                backgroundColor: "white",
+                cursor: "pointer",
+                marginY: "6px",
+            })
+            .on("click", function () {
+                $dropdownMenu.find("input[type='checkbox']").prop("checked", true);
+                var newOptions = options.map((el) => {
+                    return el.val;
+                });
+                selectedFilters[filterName] = newOptions;
+                updateChart(selectedFilters);
+                updateButtonText();
+            })
+            .hover(
+                function () {
+                    $(this).css({
+                        backgroundColor: "grey",
+                        color: "white"
+                    });
+                },
+                function () {
+                    $(this).css({
+                        backgroundColor: "white",
+                        color: "black"
+                    });
+                }
+            );
+
+        var $deselectAllButton = $("<button />")
+            .text("Pulisci")
+            .css({
+                width: "100%",
+                border: "1px solid",
+                borderRadius: "4px",
+                marginBottom: "5px",
+                backgroundColor: "white",
+                cursor: "pointer",
+                marginY: "6px",
+            })
+            .on("click", function () {
+                $dropdownMenu.find("input[type='checkbox']").prop("checked", false);
+                updateChart(selectedFilters, "Nessuna opzione selezionata");
+                updateButtonText();
+            })
+            .hover(
+                function () {
+                    $(this).css({
+                        backgroundColor: "grey",
+                        color: "white"
+                    });
+                },
+                function () {
+                    $(this).css({
+                        backgroundColor: "white",
+                        color: "black"
+                    });
+                }
+            );
+        var $buttonsContainer = $("<div />")
+            .addClass("dropdown-buttons")
+            .append($searchBox, $deselectAllButton, $selectAllButton);
+        $dropdownMenu.prepend($buttonsContainer);
+    }
+    container.append($dropdown);
+}
+var selectedFilters = {
+    rateOptions: extractSelectedValues(rateOptions),
+    yearOptions: extractSelectedValues(yearOptions),
+    sexOptions: extractSelectedValues(sexOptions),
+    ageOptions: extractSelectedValues(ageOptions),
+};
