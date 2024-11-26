@@ -230,10 +230,9 @@ function crudeRate(casi, popolazione, data, references, k = 1000) {
                     (sum, row) => ({
                         ...sum,
                         ["tasso"]: popolazione[riferimento] === 0 ?
-                            null :
-                            k === 1000 ?
-                            ((casi[riferimento] / popolazione[riferimento]) * k).toFixed(2) :
-                            (casi[riferimento] / popolazione[riferimento]) * k,
+                            null : k === 1000 ?
+                            ((casi[riferimento] / popolazione[riferimento]) * k).toFixed(2) : (casi[
+                                riferimento] / popolazione[riferimento]) * k,
                     }), {}
                 ),
         }), {}
@@ -268,16 +267,6 @@ const sorter = (a, b) => {
     if (a > b) return -1;
     if (a == b) return 0;
     if (a < b) return 1;
-};
-
-const extractFilter = (column) => {
-    return data.reduce(
-        (values, row) =>
-        values.indexOf(row[column]) === -1 ?
-        values.concat([row[column]]) :
-        values,
-        []
-    );
 };
 
 function sameValues(arr1, arr2) {
@@ -364,3 +353,79 @@ function extractSelectedValues(options) {
     });
     return selected;
 }
+
+var rateOptions = [{
+        val: "Tasso standardizzato",
+        checked: true
+    },
+    {
+        val: "Tasso grezzo",
+        checked: false
+    },
+    {
+        val: "Rischio relativo",
+        checked: false
+    },
+];
+
+
+var ageOptions = [{
+        val: "40-44",
+        checked: true
+    },
+    {
+        val: "45-49",
+        checked: true
+    },
+    {
+        val: "50-54",
+        checked: true
+    },
+    {
+        val: "55-59",
+        checked: true
+    },
+    {
+        val: "60-64",
+        checked: true
+    },
+    {
+        val: "65-69",
+        checked: true
+    },
+    {
+        val: "70-74",
+        checked: true
+    },
+    {
+        val: "75-79",
+        checked: true
+    },
+    {
+        val: "80-84",
+        checked: true
+    },
+    {
+        val: ">=85",
+        checked: true
+    },
+];
+
+var sexOptions = [{
+        val: "Maschi e Femmine",
+        checked: true
+    },
+    {
+        val: "Femmine",
+        checked: false
+    },
+    {
+        val: "Maschi",
+        checked: false
+    },
+];
+
+var $mainContainer = $("<div />").addClass("main-container").css({
+    display: "flex",
+    justifyContent: "space-between",
+});
