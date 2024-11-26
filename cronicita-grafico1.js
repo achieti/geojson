@@ -1,10 +1,3 @@
-/**
- * VARIABILI COMUNI
- * Sezioni: Cronicità
- * Grafico: 1
- * Titolo: Prevalenza del XXXX per Comuni
- * Descrizione: Grafico con la mappa dei comuni della Puglia
- */
 var ageClassesMap = [
     "40-44",
     "45-49",
@@ -18,21 +11,6 @@ var ageClassesMap = [
     ">=85",
 ];
 
-
-/**
- * FUNZIONI COMUNI
- * Sezioni: Cronicità
- * Grafico: 1
- * Titolo: Prevalenza del XXXX per Comuni
- * Descrizione: Grafico con la mappa dei comuni della Puglia
- */
-
-/**
- * @param {*} column
- * @param {*} array
- * @param {*} dataset
- * @returns
- */
 const createDataset = (column, array, dataset) => {
     var newDataset = [];
     var temp = [];
@@ -49,11 +27,6 @@ const createDataset = (column, array, dataset) => {
     return newDataset;
 };
 
-/**
- * @param {*} ageClasses
- * @param {*} ageClassesMap
- * @returns
- */
 function isAgeClassesNotConsecutive(ageClasses, ageClassesMap) {
     let obj = {
         pointer: null,
