@@ -108,7 +108,7 @@ function pathologyArticle(pathology) {
             article = 'della ';
             break;
         case 'Ipertensione':
-            article = " dell' ";
+            article = " dell'";
             break;
         default:
             article = ' del ';
