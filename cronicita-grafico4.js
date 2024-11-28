@@ -36,3 +36,36 @@ function standardRateArea(years, data, k = 1000) {
     });
     return rates;
 }
+
+function calculationWiArea(years, data) {
+    let popEu = extractTotalArea("peso_classe", years, data);
+    let container = {
+        Area: {},
+    };
+    years.forEach((el) => {
+        let obj = {};
+        data.forEach((row) => {
+            obj[row.classe_eta] = row.peso_classe / popEu["Area"][row.anno];
+        });
+        container["Area"][el] = obj;
+    });
+    return container;
+}
+
+function extractTotalArea(column, years, data) {
+    let dataset = null;
+    let sum = 0;
+    let container = {
+        Area: {},
+    };
+    years.forEach((el) => {
+        sum = 0;
+        dataset =
+            column === "peso_classe" ?
+            data.filter((d) => d.anno === el && d.riferimento === data[0].riferimento) :
+            data.filter((d) => d.anno === el);
+        dataset.forEach((row) => (sum += row[column]));
+        container["Area"][el] = sum;
+    });
+    return container;
+}
