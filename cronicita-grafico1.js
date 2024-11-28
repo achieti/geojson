@@ -29,7 +29,7 @@ function legendPoints(pathology) {
             points['from2'] = points['to2'];
             points['to3'] = 428.68;
             points['from3'] = points['to3'];
-            points['to4'] = 112.61;
+            points['to4'] = 442.89;
             points['from4'] = points['to4'];
             break;
         default:
