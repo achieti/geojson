@@ -73,16 +73,19 @@ function pathologySpecification(pathology) {
     var specification = '';
     switch (pathology) {
         case 'Vescica':
+        case 'Tiroide':
+        case 'Testa collo':
             specification = ' del tumore della ';
             break;
         case 'Totale':
             specification = ' di tutti i tumori ';
             break;
         case 'Utero corpo':
+        case 'Utero collo':
             specification = " del tumore dell'";
             break;
         default:
-            specification = ' del ';
+            specification = ' del tumore del ';
     }
     return specification;
 }
