@@ -77,11 +77,17 @@ function pathologySpecification(pathology) {
         case 'Testa collo':
         case 'Prostata':
         case 'Mammella femminile':
+            specification = ' del tumore della ';
+            break;
         case 'Leucemia mieloide cronica':
         case 'Leucemia mieloide acuta':
         case 'Leucemia linfatica cronica':
         case 'Leucemia linfatica acuta':
-            specification = ' del tumore della ';
+            specification = ' della ';
+            break;
+        case 'Linfoma di Hodgkin':
+        case 'Linfoma non Hodgkin':
+            specification = ' del ';
             break;
         case 'Totale':
             specification = ' di tutti i tumori ';
