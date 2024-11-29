@@ -83,3 +83,56 @@ function pathologySpecification(pathology) {
     }
     return specification;
 }
+
+
+function sexOptionsGenerator(pathology) {
+    var sexOptions = [];
+
+    switch (pathology) {
+        case 'Utero corpo':
+            sexOptions = [{
+                    val: "Maschi e Femmine",
+                    checked: true
+                },
+                {
+                    val: "Femmine",
+                    checked: false
+                },
+                {
+                    val: "Maschi",
+                    checked: false
+                },
+            ];
+            break;
+        case 'Testicolo':
+            sexOptions = [{
+                    val: "Maschi e Femmine",
+                    checked: true
+                },
+                {
+                    val: "Femmine",
+                    checked: false
+                },
+                {
+                    val: "Maschi",
+                    checked: false
+                },
+            ];
+            break;
+        default:
+            sexOptions = [{
+                    val: "Maschi e Femmine",
+                    checked: true
+                },
+                {
+                    val: "Femmine",
+                    checked: false
+                },
+                {
+                    val: "Maschi",
+                    checked: false
+                },
+            ];
+    }
+    return sexOptions;
+}
