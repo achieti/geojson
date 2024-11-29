@@ -95,13 +95,13 @@ function sexOptionsGenerator(pathology) {
         case 'Utero corpo':
             sexOptions = [{
                 val: "Femmine",
-                checked: false
+                checked: true
             }];
             break;
         case 'Testicolo':
             sexOptions = [{
                 val: "Maschi",
-                checked: false
+                checked: true
             }];
             break;
         default:
