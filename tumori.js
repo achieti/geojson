@@ -89,6 +89,9 @@ function pathologySpecification(pathology) {
             break;
         case 'Linfoma di Hodgkin':
         case 'Linfoma non Hodgkin':
+        case 'Melanoma cute':
+        case 'Mesotelioma':
+        case 'Mieloma':
             specification = ' del ';
             break;
         case 'Totale':
