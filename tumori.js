@@ -78,6 +78,9 @@ function pathologySpecification(pathology) {
         case 'Totale':
             specification = ' di tutti i tumori ';
             break;
+        case 'Utero corpo':
+            specification = " del tumore dell'";
+            break;
         default:
             specification = ' del ';
     }
@@ -91,33 +94,15 @@ function sexOptionsGenerator(pathology) {
     switch (pathology) {
         case 'Utero corpo':
             sexOptions = [{
-                    val: "Maschi e Femmine",
-                    checked: true
-                },
-                {
-                    val: "Femmine",
-                    checked: false
-                },
-                {
-                    val: "Maschi",
-                    checked: false
-                },
-            ];
+                val: "Femmine",
+                checked: false
+            }];
             break;
         case 'Testicolo':
             sexOptions = [{
-                    val: "Maschi e Femmine",
-                    checked: true
-                },
-                {
-                    val: "Femmine",
-                    checked: false
-                },
-                {
-                    val: "Maschi",
-                    checked: false
-                },
-            ];
+                val: "Maschi",
+                checked: false
+            }];
             break;
         default:
             sexOptions = [{
