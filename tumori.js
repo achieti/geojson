@@ -104,7 +104,6 @@ function pathologySpecification(pathology) {
 
 function sexOptionsGenerator(pathology) {
     var sexOptions = [];
-    console.log(pathology);
     switch (pathology) {
         case 'Utero corpo':
         case 'Utero collo':
