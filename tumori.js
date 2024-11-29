@@ -90,7 +90,7 @@ function pathologySpecification(pathology) {
 
 function sexOptionsGenerator(pathology) {
     var sexOptions = [];
-
+    console.log(pathology);
     switch (pathology) {
         case 'Utero corpo':
             sexOptions = [{
@@ -118,6 +118,7 @@ function sexOptionsGenerator(pathology) {
                     checked: false
                 },
             ];
+            break;
     }
     return sexOptions;
 }
