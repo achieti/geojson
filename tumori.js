@@ -76,8 +76,10 @@ function pathologySpecification(pathology) {
         case 'Tiroide':
         case 'Testa collo':
         case 'Prostata':
-        case 'Mammella femminile':
             specification = ' del tumore della ';
+            break;
+        case 'Mammella':
+            specification = ' del tumore della Mammella femminile ';
             break;
         case 'Leucemia mieloide cronica':
         case 'Leucemia mieloide acuta':
@@ -114,7 +116,7 @@ function sexOptionsGenerator(pathology) {
         case 'Utero corpo':
         case 'Utero collo':
         case 'Ovaio':
-        case 'Mammella femminile':
+        case 'Mammella':
             sexOptions = [{
                 val: "Femmine",
                 checked: true
