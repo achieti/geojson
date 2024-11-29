@@ -75,6 +75,12 @@ function pathologySpecification(pathology) {
         case 'Vescica':
         case 'Tiroide':
         case 'Testa collo':
+        case 'Prostata':
+        case 'Mammella femminile':
+        case 'Leucemia mieloide cronica':
+        case 'Leucemia mieloide acuta':
+        case 'Leucemia linfatica cronica':
+        case 'Leucemia linfatica acuta':
             specification = ' del tumore della ';
             break;
         case 'Totale':
@@ -82,7 +88,12 @@ function pathologySpecification(pathology) {
             break;
         case 'Utero corpo':
         case 'Utero collo':
+        case 'Ovaio':
+        case 'Encefalo e SNC':
             specification = " del tumore dell'";
+            break;
+        case 'Stomaco':
+            specification = " del tumore dello ";
             break;
         default:
             specification = ' del tumore del ';
@@ -97,12 +108,15 @@ function sexOptionsGenerator(pathology) {
     switch (pathology) {
         case 'Utero corpo':
         case 'Utero collo':
+        case 'Ovaio':
+        case 'Mammella femminile':
             sexOptions = [{
                 val: "Femmine",
                 checked: true
             }];
             break;
         case 'Testicolo':
+        case 'Prostata':
             sexOptions = [{
                 val: "Maschi",
                 checked: true
