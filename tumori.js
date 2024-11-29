@@ -93,6 +93,7 @@ function sexOptionsGenerator(pathology) {
     console.log(pathology);
     switch (pathology) {
         case 'Utero corpo':
+        case 'Utero collo':
             sexOptions = [{
                 val: "Femmine",
                 checked: true
